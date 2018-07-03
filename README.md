@@ -18,3 +18,15 @@ Optional arguments:
   Command to run to select target PID
 * -D, --debug  
   Debug mode: re raise Exception (do not use in production)
+
+# Examples
+
+```
+./check_open_fds.py --pid-cmd "systemctl show chronos --property=MainPID --value"
+CRITICAL: Open FDs 100% (8188/8192) for PID 15136 is above critical 85% limit|used_percent=100%;75;85;; open_fds=8188;;;0;8192;
+```
+
+```
+./check_open_fds.py --pid-cmd "echo 1234"
+UNKNOWN: Got exception while running get_pid_fds: NoSuchProcess: psutil.NoSuchProcess no process found with pid 1234
+```
