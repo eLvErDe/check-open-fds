@@ -134,6 +134,7 @@ def get_pid_fds(pid):
 if __name__ == '__main__':
 
     CONFIG = parse_args()
+    DEBUG = CONFIG.debug
 
     PID = get_pid_from_command(CONFIG.pid_cmd)
     USED, MAX = get_pid_fds(PID)
