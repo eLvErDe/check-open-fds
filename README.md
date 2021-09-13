@@ -1,5 +1,7 @@
 # Usage
 
+## Check open file descriptors
+
 ```
 Usage: check_open_fds.py [-h] [-W WARNING] [-C CRITICAL] -P "systemctl show nginx --property=MainPID --value" [-D]
 ```
@@ -7,17 +9,19 @@ Usage: check_open_fds.py [-h] [-W WARNING] [-C CRITICAL] -P "systemctl show ngin
 Check number of open file handlers for a given PID (through a given command returning PID)
 
 Optional arguments:
-* -h, --help  
-  show this help message and exit
-* -W WARNING, --warning WARNING  
+* `-h`, `--help`
+  Show this help message and exit
+* `-W WARNING`, `--warning WARNING`  
   Percentage of FDs use raising a warning
-* -C CRITICAL, --critical CRITICAL  
+* `-C CRITICAL`, `--critical CRITICAL`  
   Percentage of FDs use raising an error
-* -P "systemctl show nginx --property=MainPID --value", --pid-cmd "systemctl show nginx --property=MainPID --value"  
+* `-P "systemctl show nginx --property=MainPID --value"`, `--pid-cmd "systemctl show nginx --property=MainPID --value"`  
   Command to run to select target PID
-* -D, --debug  
+* `-D`, `--debug`  
   Debug mode: re raise Exception (do not use in production)
 
+
+## Check running threads count
 
 ```
 Usage: check_threads_count.py [-h] -W WARNING -C CRITICAL -P "systemctl show nginx --property=MainPID --value" [-D]
@@ -25,16 +29,16 @@ Usage: check_threads_count.py [-h] -W WARNING -C CRITICAL -P "systemctl show ngi
 
 Check number of threads for given PID (through a given command returning PID)
 
-optional arguments:
-* -h, --help  
-  show this help message and exit
-* -W WARNING, --warning WARNING  
+Optional arguments:
+* `-h`, `--help`  
+  Show this help message and exit
+* `-W WARNING`, `--warning WARNING`  
   Maximum number of threads threshold for warning
-* -C CRITICAL, --critical CRITICAL  
+* `-C CRITICAL`, `--critical CRITICAL`  
   Maximum number of threads threshold for error
-* -P "systemctl show nginx --property=MainPID --value", --pid-cmd "systemctl show nginx --property=MainPID --value"  
+* `-P "systemctl show nginx --property=MainPID --value"`, `--pid-cmd "systemctl show nginx --property=MainPID --value"`  
   Command to run to select target PID
-* -D, --debug  
+* `-D`, `--debug`  
   Debug mode: re raise Exception (do not use in production)
 
 
