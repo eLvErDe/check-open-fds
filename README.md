@@ -42,6 +42,27 @@ Optional arguments:
   Debug mode: re raise Exception (do not use in production)
 
 
+## Check process CPU usage
+
+```
+Usage: check_process_cpu_usage.py [-h] -W WARNING -C CRITICAL -P "systemctl show nginx --property=MainPID --value" [-D]
+```
+
+Nagios-style monitoring script to check and graph a single process CPU usage
+
+Optional arguments:
+*  `-h`, `--help`  
+   Show this help message and exit
+*  `-W WARNING`, `--warning WARNING`  
+   Warning threshold using Nagios-style value (e.g: 10 for >0% and <10%, @10:20 for >=10% and <=20%
+*  `-C CRITICAL`, `--critical CRITICAL`  
+   Critical threshold using Nagios-style value (e.g: 10 for >0% and <10%, @10:20 for >=10% and <=20%
+*  `-P "systemctl show nginx --property=MainPID --value"`, `--pid-cmd "systemctl show nginx --property=MainPID --value"`  
+   Command to run to select target PID
+*  `-D`, `--debug`  
+   Debug mode: re raise Exception (do not use in production)
+
+
 # Examples
 
 ```
@@ -57,4 +78,9 @@ UNKNOWN: Got exception while running get_pid_fds: NoSuchProcess: psutil.NoSuchPr
 ```
 ./check_threads_count.py --pid-cmd 'systemctl show hbase-rest --property=MainPID --value' --warning 85 --critical 95
 OK: 40 threads for PID 1117 is below warning 85 limit|threads=40;85;95;;
+```
+
+```
+./check_process_cpu_usage.py --pid-cmd 'systemctl show myservice --property=MainPID --value' --warning @5:50 --critical @1:100
+WARNING: 2.3% CPU usage for PID 568 is outside warning limits (2.3<5.0)|cpu_percentage=2.3%;5.0..50.0;1.0..100.0;0;80
 ```
